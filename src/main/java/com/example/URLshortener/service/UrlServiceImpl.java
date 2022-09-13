@@ -6,8 +6,8 @@ import com.example.URLshortener.repository.UrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class UrlServiceImpl implements UrlService{
@@ -15,8 +15,8 @@ public class UrlServiceImpl implements UrlService{
     @Autowired
     UrlRepository repository;
     @Override
-    public Url getOriginalUrl(String shortUrl) {
-        return  repository.getOriginalUrl(shortUrl).orElse(new Url(shortUrl, null));
+    public Optional<Url> getOriginalUrl(String shortUrlId) {
+        return  repository.getOriginalUrl(shortUrlId);
     }
 
     @Override
@@ -24,17 +24,13 @@ public class UrlServiceImpl implements UrlService{
         if(UrlHelper.isValid(originalUrl)) {
             Url url = new Url();
             LocalDateTime dateCreated = LocalDateTime.now();
-
             url.setOriginalUrl(originalUrl);
             url.setDateCreated(dateCreated);
-
-            String shortUrl = UrlHelper.generateShortUrl(originalUrl + dateCreated.toString());
-
-            url.setShortUrl(shortUrl);
-
+            String setShortUrlId = UrlHelper.generateShortUrl(originalUrl + dateCreated.toString());
+            url.setShortUrlId(setShortUrlId);
             return repository.saveUrl(url);
         } else {
-            return new Url(null, originalUrl);
+            throw new IllegalArgumentException("Url is invalid :"+originalUrl);
         }
 
     }

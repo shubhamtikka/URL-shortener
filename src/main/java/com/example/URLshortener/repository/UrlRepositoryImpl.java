@@ -15,7 +15,7 @@ public class UrlRepositoryImpl implements UrlRepository {
 
     @Override
     public Optional<Url> getOriginalUrl(String shortUrl) {
-        return urlList.stream().filter(url -> url.getShortUrl().equals(shortUrl)).findFirst();
+        return urlList.stream().filter(url -> url.getShortUrlId().equals(shortUrl)).findFirst();
     }
 
     @Override

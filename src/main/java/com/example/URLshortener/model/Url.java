@@ -4,23 +4,23 @@ import java.time.LocalDateTime;
 
 public class Url {
     private int id;
-    private String shortUrl;
+    private String shortUrlId;
     private String originalUrl;
 
     private LocalDateTime dateCreated;
 
     public Url(){}
 
-    public Url(String shortUrl, String originalUrl) {
-        this.shortUrl = shortUrl;
+    public Url(String shortUrlId, String originalUrl) {
+        this.shortUrlId = shortUrlId;
         this.originalUrl = originalUrl;
     }
 
     public int getId() {
         return id;
     }
-    public String getShortUrl() {
-        return shortUrl;
+    public String getShortUrlId() {
+        return shortUrlId;
     }
 
     public String getOriginalUrl() {
@@ -31,8 +31,8 @@ public class Url {
         this.id = id;
     }
 
-    public void setShortUrl(String shortUrl) {
-        this.shortUrl = shortUrl;
+    public void setShortUrlId(String shortUrlId) {
+        this.shortUrlId = shortUrlId;
     }
 
     public void setOriginalUrl(String originalUrl) {
@@ -51,7 +51,7 @@ public class Url {
     public String toString() {
         return "Url{" +
                 "id=" + id +
-                ", shortUrl='" + shortUrl + '\'' +
+                ", shortUrl='" + shortUrlId + '\'' +
                 ", originalUrl='" + originalUrl + '\'' +
                 ", dateCreated=" + dateCreated +
                 '}';
